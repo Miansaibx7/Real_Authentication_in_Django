@@ -1,0 +1,15 @@
+[project]
+name = "saas"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=6.0.3",
+    "django-cors-headers>=4.9.0",
+    "djangorestframework>=3.16.1",
+    "djangorestframework-simplejwt>=5.5.1",
+    "psycopg2-binary>=2.9.12",
+    "python-decouple>=3.8",
+    "social-auth-app-django>=5.9.0",
+]
