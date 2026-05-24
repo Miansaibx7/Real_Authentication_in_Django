@@ -1,18 +1,23 @@
-# (EMAIL + OTP LOGIC)
+import secrets
+
 from django.core.mail import send_mail
-import random
+
+from django.conf import settings
+
 
 def generate_otp():
-    """Generates a 6-digit OTP."""
-    return str(random.randint(100000, 999999))
+
+    return str(
+        secrets.randbelow(900000) + 100000
+    )
 
 
-# Sends the OTP to the user's email.
 def send_email_otp(email, code):
+
     send_mail(
         "Your Verification Code",
         f"Your OTP is {code}",
-        "yourgmail@gmail.com",
+        settings.EMAIL_HOST_USER,
         [email],
         fail_silently=False,
     )
