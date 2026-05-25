@@ -2,14 +2,16 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth import authenticate
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model
+from django.shortcuts import get_object_or_404
 
 from .models import EmailOTP, PasswordResetOTP
 from .serializers import RegisterSerializer, LoginSerializer
 from .utils import generate_otp, send_email_otp
 
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.db.models import F
+from django.contrib.auth.password_validation import validate_password
 
 from rest_framework.permissions import AllowAny
 from rest_framework import status
@@ -36,9 +38,14 @@ class RegisterView(APIView):
 # ---------------- VERIFY EMAIL OTP ---------------------------
 class VerifyOTPView(APIView):
     permission_classes = [AllowAny]
+
     def post(self, request):
         email = request.data.get("email")
         code = request.data.get("code")
+
+        #  input validation
+        if not email or not code:
+            return Response({"error": "Email and OTP required"},status=status.HTTP_400_BAD_REQUEST)
 
         try:
             user = User.objects.get(email=email)
@@ -46,71 +53,60 @@ class VerifyOTPView(APIView):
         except (User.DoesNotExist, EmailOTP.DoesNotExist):
             return Response({"error": "Invalid email or OTP"},status=status.HTTP_400_BAD_REQUEST)
 
+        #  attempt limit
         if otp.attempts >= 5:
             return Response({"error": "Too many attempts"},status=status.HTTP_429_TOO_MANY_REQUESTS)
 
+        #  expiry check
         if otp.is_expired():
             otp.delete()
             return Response({"error": "OTP expired"},status=status.HTTP_400_BAD_REQUEST)
 
-        if otp.code != code:
-            otp.attempts += 1
-            otp.save()
+        #  safer comparison
+        if str(otp.code).strip() != str(code).strip():
+            EmailOTP.objects.filter(id=otp.id).update(
+                attempts=F('attempts') + 1
+            )
+            otp.refresh_from_db()
+
             return Response({"error": "Invalid OTP"},status=status.HTTP_400_BAD_REQUEST)
 
         user.is_active = True
         user.is_verified = True
         user.save()
+
         otp.delete()
 
         return Response({"message": "Account verified successfully"},status=status.HTTP_200_OK)
-
 
 
 # ---------------- LOGIN (JWT) ------------------------------------
 class LoginView(APIView):
 
     permission_classes = [AllowAny]
-
     def post(self, request):
 
         serializer = LoginSerializer(data=request.data)
 
         if serializer.is_valid():
-
             email = serializer.validated_data["email"]
             password = serializer.validated_data["password"]
 
-            user = authenticate(
-                username=email,
-                password=password
-            )
+            user = authenticate(username=email,password=password)
 
             if not user:
 
-                return Response(
-                    {"error": "Invalid credentials"},
-                    status=status.HTTP_401_UNAUTHORIZED
-                )
+                return Response({"error": "Invalid credentials"},status=status.HTTP_401_UNAUTHORIZED)
 
             if not user.is_verified:
 
-                return Response(
-                    {"error": "Email not verified"},
-                    status=status.HTTP_403_FORBIDDEN
-                )
+                return Response({"error": "Email not verified"},status=status.HTTP_403_FORBIDDEN)
 
             refresh = RefreshToken.for_user(user)
 
-            return Response({
-                "refresh": str(refresh),
-                "access": str(refresh.access_token),
-            })
+            return Response({"refresh": str(refresh),"access": str(refresh.access_token),})
 
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST
-        )
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
 class ForgotPasswordView(APIView):
@@ -118,7 +114,6 @@ class ForgotPasswordView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-
         email = request.data.get("email")
 
         try:
@@ -126,27 +121,14 @@ class ForgotPasswordView(APIView):
 
         except User.DoesNotExist:
 
-            return Response(
-                {
-                    "message":
-                    "If the email exists, OTP has been sent"
-                },
-                status=status.HTTP_200_OK
-            )
+            return Response({"message":"If the email exists, OTP has been sent"},status=status.HTTP_200_OK)
 
         code = generate_otp()
-
-        PasswordResetOTP.objects.update_or_create(
-            user=user,
-            defaults={"code": code, "attempts": 0}
-        )
-
+        PasswordResetOTP.objects.update_or_create(user=user,defaults={"code": code, "attempts": 0})
+        
         send_email_otp(email, code)
 
-        return Response(
-            {"message": "OTP sent successfully"},
-            status=status.HTTP_200_OK
-        )
+        return Response({"message": "OTP sent successfully"},status=status.HTTP_200_OK)
 
 
 class ResetPasswordView(APIView):
@@ -165,32 +147,20 @@ class ResetPasswordView(APIView):
 
         except (User.DoesNotExist, PasswordResetOTP.DoesNotExist):
 
-            return Response(
-                {"error": "Invalid request"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({"error": "Invalid request"},status=status.HTTP_400_BAD_REQUEST)
 
         if otp.is_expired():
-
             otp.delete()
 
-            return Response(
-                {"error": "OTP expired"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({"error": "OTP expired"},status=status.HTTP_400_BAD_REQUEST)
 
         if otp.code != code:
-
             otp.attempts += 1
             otp.save()
 
-            return Response(
-                {"error": "Invalid OTP"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({"error": "Invalid OTP"},status=status.HTTP_400_BAD_REQUEST)
 
         validate_password(new_password)
-
         user.set_password(new_password)
         user.save()
 

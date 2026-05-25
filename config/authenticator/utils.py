@@ -1,20 +1,19 @@
 import secrets
-
 from django.core.mail import send_mail
 from django.conf import settings
 
-
 def generate_otp():
-
-    return str(secrets.randbelow(900000) + 100000)  # Generate a 6-digit OTP
-
+    return str(secrets.randbelow(900000) + 100000)
 
 def send_email_otp(email, code):
-
-    send_mail(
-        subject="Your Verification Code",
-        message=f"Your OTP code is: {code}",
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[email],
-        fail_silently=False,
-    )
+    try:
+        send_mail(
+            subject="Your Verification Code",
+            message=f"Your OTP code is: {code}",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[email],
+            fail_silently=False,
+        )
+    except Exception as e:
+        print(f"SMTP Setup Error: {e}") 
+        # This prevents the registration endpoint from crashing 500 if email fails

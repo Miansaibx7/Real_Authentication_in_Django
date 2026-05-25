@@ -36,7 +36,6 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-
 AUTH_USER_MODEL = 'authenticator.User'
 
 REST_FRAMEWORK = {
@@ -54,13 +53,9 @@ from datetime import timedelta
 SIMPLE_JWT = {
 
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-
     "ROTATE_REFRESH_TOKENS": True,
-
     "BLACKLIST_AFTER_ROTATION": True,
-
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
@@ -150,6 +145,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
 
 # first i install python-decouple it then create env file in which folder and 
 # write the email and password then in setting file just import it or what explain it 
