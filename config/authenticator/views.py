@@ -110,7 +110,6 @@ class LoginView(APIView):
 
 
 class ForgotPasswordView(APIView):
-
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -132,7 +131,6 @@ class ForgotPasswordView(APIView):
 
 
 class ResetPasswordView(APIView):
-
     permission_classes = [AllowAny]
 
     def post(self, request):
