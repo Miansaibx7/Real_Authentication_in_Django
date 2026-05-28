@@ -165,4 +165,3 @@ class ResetPasswordView(APIView):
         otp.delete()
 
         return Response({"message": "Password reset successful"},status=status.HTTP_200_OK)
-
