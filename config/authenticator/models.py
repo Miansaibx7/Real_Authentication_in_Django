@@ -27,9 +27,8 @@ class UserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
-
+# Custom User Model with email as username field and verification status
 class User(AbstractUser):
-
     username = None
     email = models.EmailField(unique=True)
     is_verified = models.BooleanField(default=False)
@@ -41,7 +40,7 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
-
+# EmailOTP Send Model for registration 
 class EmailOTP(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     code = models.CharField(max_length=6)
@@ -54,7 +53,7 @@ class EmailOTP(models.Model):
     def __str__(self):
         return f"{self.user.email} Email OTP"
 
-    
+# Reset Password OTP Model  
 class PasswordResetOTP(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     code = models.CharField(max_length=6)
