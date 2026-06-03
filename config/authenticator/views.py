@@ -3,7 +3,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, get_user_model
 
-
 from .models import EmailOTP, PasswordResetOTP
 from .serializers import RegisterSerializer, LoginSerializer
 from .utils import generate_otp, send_email_otp
@@ -54,7 +53,7 @@ class VerifyOTPView(APIView):
 
         #  attempt limit
         if otp.attempts >= 5:
-            return Response({"error": "Too many attempts"},status=status.HTTP_429_TOO_MANY_REQUESTS)
+            return Response({"error": "Too many attempts try later"},status=status.HTTP_429_TOO_MANY_REQUESTS)
 
         #  expiry check
         if otp.is_expired():
