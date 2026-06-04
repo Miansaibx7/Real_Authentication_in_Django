@@ -53,7 +53,7 @@ class VerifyOTPView(APIView):
 
         #  attempt limit
         if otp.attempts >= 5:
-            return Response({"error": "Too many attempts try later"},status=status.HTTP_429_TOO_MANY_REQUESTS)
+            return Response({"error": "Too many attempts"},status=status.HTTP_429_TOO_MANY_REQUESTS)
 
         #  expiry check
         if otp.is_expired():
@@ -72,10 +72,9 @@ class VerifyOTPView(APIView):
         user.is_active = True
         user.is_verified = True
         user.save()
-
         otp.delete()
 
-        return Response({"message": "Account verified successfully"},status=status.HTTP_200_OK)
+        return Response({"message": "Account verified successfully..."},status=status.HTTP_200_OK)
 
 
 # ---------------- LOGIN (JWT) ------------------------------------
