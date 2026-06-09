@@ -164,3 +164,27 @@ class ResetPasswordView(APIView):
         otp.delete()
 
         return Response({"message": "Password reset successful"},status=status.HTTP_200_OK)
+    
+
+# ---------------- LOGOUT (Blacklist JWT) ------------------------------------
+class LogoutView(APIView):
+
+    def post(self, request):
+        refresh_token = request.data.get("refresh")
+
+        if not refresh_token:
+            return Response({"error": "Refresh token required"},status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+
+            return Response({"message": "Logged out successfully"},status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({"error": "Invalid token"},status=status.HTTP_400_BAD_REQUEST)
+
+
+# ---------------- Dashborad View (Protected) ------------------------------------
+class DashboardView(APIView):
+    pass
