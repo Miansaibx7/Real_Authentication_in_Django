@@ -38,7 +38,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 ### Prerequisites
 
 * Django and npm installed
-* Python 3.8+ installed
+* Python installed
 * Git
 
 ### 1. Backend Setup (Django)
