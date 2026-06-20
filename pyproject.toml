@@ -5,13 +5,20 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "certifi>=2026.4.22",
     "django>=6.0.3",
     "django-cors-headers>=4.9.0",
     "django-ratelimit>=4.1.0",
     "djangorestframework>=3.16.1",
     "djangorestframework-simplejwt>=5.5.1",
+    "dotenv>=0.9.9",
     "pillow>=12.2.0",
     "psycopg2-binary>=2.9.12",
     "python-decouple>=3.8",
+    "pytrends-modern>=0.2.11",
+    "requests>=2.34.0",
+    "serpapi>=1.0.2",
     "social-auth-app-django>=5.9.0",
+    "trendspyg>=0.6.1",
+    "urllib3>=2.7.0",
 ]
