@@ -41,8 +41,8 @@ Follow these instructions to get a copy of the project up and running on your lo
 * Python installed
 * Git
 
-### 1. Backend Setup (Django)
+### Backend Setup (Django)
 
-1. **Navigate to your backend directory:**
+ **Navigate to your backend directory:**
    ```bash
    cd backend
