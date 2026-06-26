@@ -1,6 +1,6 @@
 
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,10 +9,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3uh1(p*2u30vm1&clp-$0ib-53o#$-*3wjgd&@yg^%=3aqt+xm'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=True, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'authenticator',
+    'dashboard', 
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -150,8 +151,23 @@ EMAIL_USE_TLS = True
 
 # first i install python-decouple it then create env file in which folder and 
 # write the email and password then in setting file just import it or what explain it 
-from decouple import config
 
-SECRET_KEY = config('SECRET_KEY')
+import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
+
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+
+# ---------- Bonus: Integrate External API for Trending Products ----------
+RAPIDAPI_KEY = config('RAPIDAPI_KEY', default=None)
+GETDEALS_API_KEY = config('GETDEALS_API_KEY', default=None)
+
+# For SerpApi (Google Trends)
+SERPAPI_API_KEY = config("SERPAPI_API_KEY")
+
+# For Apify (Ecommerce data)
+APIFY_API_KEY = config("APIFY_API_KEY")
