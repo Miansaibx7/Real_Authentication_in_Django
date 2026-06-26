@@ -7,3 +7,13 @@ config/db.sqlite3
 *.sqlite3 
 *.migrations  
 migrations 
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
