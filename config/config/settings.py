@@ -1,6 +1,7 @@
 
 from pathlib import Path
 from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -121,38 +122,23 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/6.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
-
 STATIC_URL = 'static/'
 
-#  Email settings for sending password reset emails
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
+# Email settings for STMP(SIMPLE TRA)
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" # Which mail backend to use (SMTP).
+EMAIL_HOST = "smtp.gmail.com" # SMTP server address (Gmail).
+EMAIL_PORT = 587  # Port for TLS (587)
+EMAIL_USE_TLS = True # Enable TLS encryption.
 
 # first i install python-decouple it then create env file in which folder and 
 # write the email and password then in setting file just import it or what explain it 
-
-import os
-from dotenv import load_dotenv
-
-# Load .env file
-load_dotenv()
-
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
