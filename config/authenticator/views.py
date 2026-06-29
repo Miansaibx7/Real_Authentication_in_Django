@@ -28,7 +28,7 @@ class RegisterView(APIView):
             EmailOTP.objects.update_or_create(user=user, defaults={"code": code, "attempts": 0})
             send_email_otp(user.email, code)
 
-            return Response({"message": "OTP sent to email"},status=status.HTTP_201_CREATED)
+            return Response({"message": "OTP sent to the email"},status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
