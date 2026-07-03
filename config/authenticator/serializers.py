@@ -31,10 +31,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         validated_data.pop('confirm_password')
         user = User.objects.create_user(
             email=validated_data['email'],
-            password=validated_data['password']
+            password=validated_data['password'],
+            is_active = False,
+            is_verified = False
         )
-        user.is_active = False
-        user.is_verified = False
         user.save()
         return user
 
