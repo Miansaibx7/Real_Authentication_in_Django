@@ -10,43 +10,26 @@ from .services.apify_service import ApifyService
 from .services.rapidapi_service import RapidAPIService
 
 
-# -------------------------------
-# 1. TREND + PRODUCT INTELLIGENCE
-# -------------------------------
+# TREND + PRODUCT INTELLIGENCE
 class TrendingProductsView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-
         location = request.GET.get("location", "PK")
-
         trends = TrendService.get_trends(location)
 
         results = []
-
         for t in trends:
-
             # REAL products from Apify (NO MOCK)
             products = ApifyService.get_products(t["query"], location)
 
             for p in products:
-
                 # optional enrichment
                 enriched = RapidAPIService.enrich_product(p["title"])
-
-                price = float(
-                    p.get("price")
-                    or enriched.get("price")
-                    or 50
-                )
+                price = float(p.get("price") or enriched.get("price") or 50)
 
                 rating = float(p.get("rating") or 3)
-
-                demand_score = DemandEngine.calculate(
-                    t["trend_score"],
-                    price,
-                    rating
-                )
+                demand_score = DemandEngine.calculate(t["trend_score"], price, rating)
 
                 results.append({
                     "trend": t["query"],
@@ -57,29 +40,18 @@ class TrendingProductsView(APIView):
                     "demand_score": demand_score
                 })
 
-        return Response({
-            "location": location,
-            "total_products": len(results),
-            "products": results
-        })
+        return Response({"location": location, "total_products": len(results), "products": results })
 
 
-# -------------------------------
-# 2. REAL USER LOCATION
-# -------------------------------
+#  REAL USER LOCATION
 class UserLocationView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-
         try:
-            response = requests.get(
-                "http://ip-api.com/json/",
-                timeout=5
-            )
+            response = requests.get("http://ip-api.com/json/",timeout=5)
 
             data = response.json()
-
             return Response({
                 "city": data.get("city"),
                 "country": data.get("country"),
@@ -88,44 +60,32 @@ class UserLocationView(APIView):
             })
 
         except Exception as e:
-            return Response(
-                {"error": str(e)},
-                status=503
-            )
+            return Response({"error": str(e)},status=503)
         
         
-# -------------------------------
-# 3. MAIN DASHBOARD (AGGREGATED)
-# -------------------------------
+
+# MAIN DASHBOARD (AGGREGATED)
 class DashboardView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
 
         location = request.GET.get("location", "PK")
-
         data = AggregatorService.get_dashboard_data(location)
 
-        return Response({
-            "location": location,
-            "total_products": len(data),
-            "data": data
-        })
+        return Response({"location": location, "total_products": len(data), "data": data })
 
 
-# -------------------------------
-# 4. SEARCH TREND PRODUCTS
-# -------------------------------
+# SEARCH TREND PRODUCTS
 class ProductSearchView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
 
         query = request.GET.get("query")
-
         if not query:
             return Response({"error": "query required"}, status=400)
-
+        
         trends = TrendService.get_trends("PK")
 
         results = [
@@ -133,26 +93,18 @@ class ProductSearchView(APIView):
             if query.lower() in t["query"].lower()
         ]
 
-        return Response({
-            "query": query,
-            "results": results
-        })
+        return Response({"query": query, "results": results })
 
 
-# -------------------------------
-# 5. PRODUCT LIST (REAL DATA)
-# -------------------------------
+# PRODUCT LIST (REAL DATA)
 class ProductListCreateView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-
         location = request.GET.get("location", "PK")
-
         trends = TrendService.get_trends(location)
 
         products = []
-
         for i, t in enumerate(trends):
 
             items = ApifyService.get_products(t["query"], location)
@@ -171,9 +123,8 @@ class ProductListCreateView(APIView):
         return Response(products)
 
 
-# -------------------------------
-# 6. STATIC LOCATIONS (CAN BE DB LATER)
-# -------------------------------
+
+#  STATIC LOCATIONS (CAN BE DB LATER)
 class LocationListCreateView(APIView):
     permission_classes = [AllowAny]
 
@@ -186,9 +137,8 @@ class LocationListCreateView(APIView):
         ])
 
 
-# -------------------------------
-# 7. SALES (PLACEHOLDER - SHOULD BE DB)
-# -------------------------------
+
+# SALES (PLACEHOLDER - SHOULD BE DB)
 class SaleListCreateView(APIView):
     permission_classes = [AllowAny]
 
