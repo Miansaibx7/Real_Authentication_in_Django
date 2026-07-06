@@ -93,6 +93,9 @@ class LoginView(APIView):
             user = authenticate(username=email,password=password)
             if not user:
                 return Response({"error": "Invalid credentials"},status=status.HTTP_401_UNAUTHORIZED)
+            
+            if not user.is_active:
+                return Response({"error": "Account is inactive. Please verify your email."},status=status.HTTP_403_FORBIDDEN)
 
             if not user.is_verified:
                 return Response({"error": "Email not verified"},status=status.HTTP_403_FORBIDDEN)
