@@ -38,7 +38,7 @@ class RegisterView(APIView):
 class VerifyOTPView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request):
+    def post(self, request)->Response:
         email = request.data.get("email")
         code = request.data.get("code")
 
