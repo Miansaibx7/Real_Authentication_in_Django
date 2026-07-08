@@ -20,7 +20,7 @@ User = get_user_model()
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request):
+    def post(self, request)-> Reponse:
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -38,7 +38,7 @@ class RegisterView(APIView):
 class VerifyOTPView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request):
+    def post(self, request)-> Reponse:
         email = request.data.get("email")
         code = request.data.get("code")
 
@@ -82,7 +82,7 @@ class VerifyOTPView(APIView):
 class LoginView(APIView):
 
     permission_classes = [AllowAny]
-    def post(self, request):
+    def post(self, request)-> Reponse:
 
         serializer = LoginSerializer(data=request.data)
 
