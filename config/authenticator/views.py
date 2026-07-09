@@ -20,7 +20,7 @@ User = get_user_model()
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request)-> Reponse:
+    def post(self, request)-> Response:
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -38,7 +38,7 @@ class RegisterView(APIView):
 class VerifyOTPView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request)-> Reponse:
+    def post(self, request)-> Response:
         email = request.data.get("email")
         code = request.data.get("code")
 
@@ -68,7 +68,7 @@ class VerifyOTPView(APIView):
             )
             otp.refresh_from_db()
 
-            return Response({"error": "Invalid OTP"},status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "Invalid OTP try again"},status=status.HTTP_400_BAD_REQUEST)
 
         user.is_active = True
         user.is_verified = True
@@ -78,11 +78,11 @@ class VerifyOTPView(APIView):
         return Response({"message": "Account verified successfully..."},status=status.HTTP_200_OK)
 
 
-# ---------------- LOGIN (JWT) ------------------------------------
+# ------------------ LOGIN (JWT) ------------------------------------
 class LoginView(APIView):
 
     permission_classes = [AllowAny]
-    def post(self, request)-> Reponse:
+    def post(self, request)-> Response:
 
         serializer = LoginSerializer(data=request.data)
 
