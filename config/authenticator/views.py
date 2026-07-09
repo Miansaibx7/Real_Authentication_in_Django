@@ -63,9 +63,7 @@ class VerifyOTPView(APIView):
 
         #  safer comparison
         if str(otp.code).strip() != str(code).strip():
-            EmailOTP.objects.filter(id=otp.id).update(
-                attempts=F('attempts') + 1
-            )
+            EmailOTP.objects.filter(id=otp.id).update(attempts=F('attempts') + 1)
             otp.refresh_from_db()
 
             return Response({"error": "Invalid OTP try again"},status=status.HTTP_400_BAD_REQUEST)
@@ -110,7 +108,7 @@ class LoginView(APIView):
 class ForgotPasswordView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request):
+    def post(self, request)-> Response:
         email = request.data.get("email")
 
         try:
@@ -128,7 +126,7 @@ class ForgotPasswordView(APIView):
 class ResetPasswordView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request):
+    def post(self, request)-> Response:
 
         email = request.data.get("email")
         code = request.data.get("code")
@@ -158,7 +156,7 @@ class ResetPasswordView(APIView):
 # ---------------- LOGOUT (Blacklist JWT) ------------------------------------
 class LogoutView(APIView):
 
-    def post(self, request):
+    def post(self, request)-> Response:
         refresh_token = request.data.get("refresh")
 
         if not refresh_token:
