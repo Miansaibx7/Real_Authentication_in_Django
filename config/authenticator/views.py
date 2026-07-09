@@ -66,7 +66,7 @@ class VerifyOTPView(APIView):
             EmailOTP.objects.filter(id=otp.id).update(attempts=F('attempts') + 1)
             otp.refresh_from_db()
 
-            return Response({"error": "Invalid OTP try again"},status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "Invalid OTP"},status=status.HTTP_400_BAD_REQUEST)
 
         user.is_active = True
         user.is_verified = True
