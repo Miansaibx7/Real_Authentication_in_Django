@@ -150,7 +150,7 @@ class ResetPasswordView(APIView):
         user.set_password(new_password)
         user.save()
         otp.delete()
-        return Response({"message": "Password reset successful."},status=status.HTTP_200_OK)
+        return Response({"message": "Password reset successful"},status=status.HTTP_200_OK)
     
 
 # ---------------- LOGOUT (Blacklist JWT) ------------------------------------
