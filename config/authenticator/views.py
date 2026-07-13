@@ -73,7 +73,7 @@ class VerifyOTPView(APIView):
         user.save()
         otp.delete()
 
-        return Response({"message": "Account verified successfully...."},status=status.HTTP_200_OK)
+        return Response({"message": "Account verified successfully..."},status=status.HTTP_200_OK)
 
 
 # ------------------ LOGIN (JWT) ------------------------------------
