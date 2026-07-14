@@ -2,7 +2,7 @@ import secrets
 from django.core.mail import send_mail
 from django.conf import settings
 
-# function to generate a 6-digit OTP
+# function to generate a 6-digits OTP
 def generate_otp():
     return str(secrets.randbelow(900000) + 100000)
 
@@ -15,4 +15,4 @@ def send_email_otp(email, code):
         )
     except Exception as e:
         print(f"SMTP Setup Error: {e}") 
-        # This prevents the registration endpoint from crashing 500 if email fail
+# This prevents the registration endpoint from crashing 500 if email fail
