@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
 # Custom User Model with email as username field and verification status
 class User(AbstractUser):
     username = None
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, db_index=True)
     is_verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
