@@ -11,7 +11,7 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('-date_joined',)
 
-    # Fields shown when editing a user
+    # Fields shown when edit a user
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_verified', 'groups', 'user_permissions')}),
