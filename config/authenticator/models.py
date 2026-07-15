@@ -66,7 +66,7 @@ class PasswordResetOTP(models.Model):
     attempts = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def is_expired(self):
+    def is_expired(self)-> None:
         return timezone.now() > self.created_at + timedelta(minutes=10)
 
     def __str__(self):
