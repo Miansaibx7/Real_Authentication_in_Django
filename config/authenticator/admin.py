@@ -11,14 +11,14 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('-date_joined',)
 
-    # Fields shown when edit a user
+    # Fields shown when editing a user
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_verified', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
 
-    # Fields shown when creating a new user
+    # Fields shown when create a new user
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
