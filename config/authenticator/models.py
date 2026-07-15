@@ -44,8 +44,8 @@ class User(AbstractUser):
 
 
 
-# EmailOTP Send Model for registration 
 class EmailOTP(models.Model):
+# EmailOTP Send Model for registration 
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     code = models.CharField(max_length=6)
     attempts = models.IntegerField(default=0)
@@ -59,8 +59,8 @@ class EmailOTP(models.Model):
 
 
 
-# Reset Password OTP Model  
 class PasswordResetOTP(models.Model):
+# Reset Password OTP Model  
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     code = models.CharField(max_length=6)
     attempts = models.IntegerField(default=0)
