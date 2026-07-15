@@ -6,7 +6,7 @@ from rest_framework.validators import UniqueValidator
 User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
-# Serializers for User Registration and Login model
+# Serializers for User Registration 
     email = serializers.EmailField(required=True,validators=[UniqueValidator(queryset=User.objects.all(),
                                          message="User with this email already exists.")])
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password], trim_whitespace=False)
@@ -43,8 +43,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-# Serializer for User Login
 class LoginSerializer(serializers.Serializer):
+# Serializer for User Login
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True, trim_whitespace=False)
 
