@@ -10,16 +10,14 @@ from .services.apify_service import ApifyService
 from .services.rapidapi_service import RapidAPIService
 
 
-# -------------------------------
+
 # 1. TREND + PRODUCT INTELLIGENCE
-# -------------------------------
 class TrendingProductsView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
 
         location = request.GET.get("location", "PK")
-
         trends = TrendService.get_trends(location)
 
         results = []
