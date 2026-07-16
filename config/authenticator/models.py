@@ -15,6 +15,8 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
+        # validate email uniqueness and password confirmation 
+        # validate password confirmation are handle in Serializers.py file
         user.save(using=self._db)
         return user
 
