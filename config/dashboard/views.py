@@ -42,16 +42,11 @@ class TrendingProductsView(APIView):
                     "demand_score": demand_score
                 })
 
-        return Response({
-            "location": location,
-            "total_products": len(results),
-            "products": results
-        })
+        return Response({"location": location,"total_products": len(results),"products": results})
 
 
-# -------------------------------
-# 2. REAL USER LOCATION
-# -------------------------------
+
+#  REAL USER LOCATION
 class UserLocationView(APIView):
     permission_classes = [AllowAny]
 
@@ -60,12 +55,8 @@ class UserLocationView(APIView):
             response = requests.get("http://ip-api.com/json/",timeout=5)
 
             data = response.json()
-            return Response({
-                "city": data.get("city"),
-                "country": data.get("country"),
-                "latitude": data.get("lat"),
-                "longitude": data.get("lon"),
-            })
+            return Response({"city": data.get("city"), "country": data.get("country"), "latitude": data.get("lat"),
+                "longitude": data.get("lon")})
 
         except Exception as e:
             return Response({"error": str(e)},status=503)
@@ -96,10 +87,7 @@ class ProductSearchView(APIView):
         
         trends = TrendService.get_trends("PK")
 
-        results = [
-            t for t in trends
-            if query.lower() in t["query"].lower()
-        ]
+        results = [t for t in trends if query.lower() in t["query"].lower()]
 
         return Response({"query": query, "results": results })
 
