@@ -60,7 +60,7 @@ class EmailOTP(models.Model):
 
 
 class PasswordResetOTP(models.Model):
-# Reset Password OTP Model use OneToOneField  
+# Reset Password OTP Model 
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     code = models.CharField(max_length=6)
     attempts = models.IntegerField(default=0)
