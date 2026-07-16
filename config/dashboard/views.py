@@ -10,9 +10,8 @@ from .services.apify_service import ApifyService
 from .services.rapidapi_service import RapidAPIService
 
 
-# -------------------------------
-# 1. TREND + PRODUCT INTELLIGENCE
-# -------------------------------
+
+# TREND + PRODUCT INTELLIGENCE
 class TrendingProductsView(APIView):
     permission_classes = [AllowAny]
 
@@ -29,19 +28,10 @@ class TrendingProductsView(APIView):
                 # optional enrichment
                 enriched = RapidAPIService.enrich_product(p["title"])
 
-                price = float(
-                    p.get("price")
-                    or enriched.get("price")
-                    or 50
-                )
-
+                price = float(p.get("price")or enriched.get("price")or 50)
                 rating = float(p.get("rating") or 3)
 
-                demand_score = DemandEngine.calculate(
-                    t["trend_score"],
-                    price,
-                    rating
-                )
+                demand_score = DemandEngine.calculate(t["trend_score"],price,rating)
 
                 results.append({
                     "trend": t["query"],
