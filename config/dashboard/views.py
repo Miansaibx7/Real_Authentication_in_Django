@@ -28,23 +28,13 @@ class TrendingProductsView(APIView):
             products = ApifyService.get_products(t["query"], location)
 
             for p in products:
-
                 # optional enrichment
                 enriched = RapidAPIService.enrich_product(p["title"])
 
-                price = float(
-                    p.get("price")
-                    or enriched.get("price")
-                    or 50
-                )
-
+                price = float(p.get("price") or enriched.get("price") or 50)
                 rating = float(p.get("rating") or 3)
 
-                demand_score = DemandEngine.calculate(
-                    t["trend_score"],
-                    price,
-                    rating
-                )
+                demand_score = DemandEngine.calculate( t["trend_score"], price, rating)
 
                 results.append({
                     "trend": t["query"],
