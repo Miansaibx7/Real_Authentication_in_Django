@@ -12,24 +12,24 @@ from .views import (
 )
 
 urlpatterns = [
-    # 🔥 Real-time trending + products
+    # Real-time trending + products
     path('trending/', TrendingProductsView.as_view(), name='trending-products'),
 
-    # 🌍 IP-based location detection
+    # IP-based location detection
     path('user-location/', UserLocationView.as_view(), name='user-location'),
 
-    # 📊 Main dashboard (aggregated AI system)
+    # Main dashboard (aggregated AI system)
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
 
-    # 🔍 search trends
+    # search trends
     path('search/', ProductSearchView.as_view(), name='product-search'),
 
-    # 📦 products list
+    #  products list
     path('products/', ProductListCreateView.as_view(), name='product-list'),
 
-    # 📍 locations
+    #  locations
     path('locations/', LocationListCreateView.as_view(), name='location-list'),
 
-    # 💰 sales (future DB)
+    # sales (future DB)
     path('sales/', SaleListCreateView.as_view(), name='sale-list'),
 ]
