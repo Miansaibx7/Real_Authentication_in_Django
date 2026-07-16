@@ -10,7 +10,9 @@ from .services.apify_service import ApifyService
 from .services.rapidapi_service import RapidAPIService
 
 
-# TREND + PRODUCT INTELLIGENCE
+# -------------------------------
+# 1. TREND + PRODUCT INTELLIGENCE
+# -------------------------------
 class TrendingProductsView(APIView):
     permission_classes = [AllowAny]
 
@@ -26,10 +28,20 @@ class TrendingProductsView(APIView):
             for p in products:
                 # optional enrichment
                 enriched = RapidAPIService.enrich_product(p["title"])
-                price = float(p.get("price") or enriched.get("price") or 50)
+
+                price = float(
+                    p.get("price")
+                    or enriched.get("price")
+                    or 50
+                )
 
                 rating = float(p.get("rating") or 3)
-                demand_score = DemandEngine.calculate(t["trend_score"], price, rating)
+
+                demand_score = DemandEngine.calculate(
+                    t["trend_score"],
+                    price,
+                    rating
+                )
 
                 results.append({
                     "trend": t["query"],
@@ -40,10 +52,16 @@ class TrendingProductsView(APIView):
                     "demand_score": demand_score
                 })
 
-        return Response({"location": location, "total_products": len(results), "products": results })
+        return Response({
+            "location": location,
+            "total_products": len(results),
+            "products": results
+        })
 
 
-#  REAL USER LOCATION
+# -------------------------------
+# 2. REAL USER LOCATION
+# -------------------------------
 class UserLocationView(APIView):
     permission_classes = [AllowAny]
 
