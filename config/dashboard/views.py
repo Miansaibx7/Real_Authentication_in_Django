@@ -45,29 +45,20 @@ class TrendingProductsView(APIView):
                     "demand_score": demand_score
                 })
 
-        return Response({
-            "location": location,
-            "total_products": len(results),
-            "products": results
-        })
+        return Response({"location": location, "total_products": len(results), "products": results})
 
 
-# -------------------------------
-# 2. REAL USER LOCATION
-# -------------------------------
+
+#  REAL USER LOCATION
 class UserLocationView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
 
         try:
-            response = requests.get(
-                "http://ip-api.com/json/",
-                timeout=5
-            )
+            response = requests.get("http://ip-api.com/json/",timeout=5)
 
             data = response.json()
-
             return Response({
                 "city": data.get("city"),
                 "country": data.get("country"),
