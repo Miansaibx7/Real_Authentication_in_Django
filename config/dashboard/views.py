@@ -27,7 +27,6 @@ class TrendingProductsView(APIView):
             for p in products:
                 # optional enrichment
                 enriched = RapidAPIService.enrich_product(p["title"])
-
                 price = float(p.get("price")or enriched.get("price")or 50)
                 rating = float(p.get("rating") or 3)
 
