@@ -120,7 +120,7 @@ class ProductListCreateView(APIView):
 class LocationListCreateView(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request):
+    def get(self, request:dict)-> dict:
         return Response([
             {"id": 1, "name": "Karachi", "country": "Pakistan"},
             {"id": 2, "name": "Lahore", "country": "Pakistan"},
