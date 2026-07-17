@@ -49,7 +49,7 @@ class TrendingProductsView(APIView):
 class UserLocationView(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request):
+    def get(self, request:dict)-> dict:
         try:
             response = requests.get("http://ip-api.com/json/",timeout=5)
 
