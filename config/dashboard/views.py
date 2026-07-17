@@ -77,7 +77,7 @@ class DashboardView(APIView):
 class ProductSearchView(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request):
+    def get(self, request:dict)-> dict:
         query = request.GET.get("query")
         if not query:
             return Response({"error": "query required"}, status=400)
