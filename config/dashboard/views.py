@@ -133,7 +133,7 @@ class LocationListCreateView(APIView):
 class SaleListCreateView(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request):
+    def get(self, request:dict)-> dict:
 
         return Response([
             {
