@@ -15,7 +15,7 @@ from .services.rapidapi_service import RapidAPIService
 class TrendingProductsView(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request):
+    def get(self, request:dict)-> dict:
         location = request.GET.get("location", "PK")
         trends = TrendService.get_trends(location)
 
