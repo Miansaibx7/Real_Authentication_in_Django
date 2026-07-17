@@ -67,7 +67,6 @@ class DashboardView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-
         location = request.GET.get("location", "PK")
         data = AggregatorService.get_dashboard_data(location)
 
@@ -79,16 +78,15 @@ class ProductSearchView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-
         query = request.GET.get("query")
         if not query:
             return Response({"error": "query required"}, status=400)
         
         trends = TrendService.get_trends("PK")
-
         results = [t for t in trends if query.lower() in t["query"].lower()]
 
         return Response({"query": query, "results": results })
+
 
 
 # PRODUCT LIST (REAL DATA)
