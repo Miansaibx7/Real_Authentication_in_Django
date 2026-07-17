@@ -101,7 +101,6 @@ class ProductListCreateView(APIView):
         for i, t in enumerate(trends):
 
             items = ApifyService.get_products(t["query"], location)
-
             for item in items:
 
                 products.append({
@@ -122,7 +121,6 @@ class LocationListCreateView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-
         return Response([
             {"id": 1, "name": "Karachi", "country": "Pakistan"},
             {"id": 2, "name": "Lahore", "country": "Pakistan"},
