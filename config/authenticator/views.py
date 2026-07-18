@@ -122,7 +122,7 @@ class ForgotPasswordView(APIView):
         return Response({"message": "OTP sent successfully"},status=status.HTTP_200_OK)
 
 
-# ---------------- RESET PASSWORD ------------------------------------
+# ----------------------------- RESET PASSWORD --------------------------------------------------------------
 class ResetPasswordView(APIView):
     permission_classes = [AllowAny]
 
