@@ -34,7 +34,7 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# --------------------------- VERIFY EMAIL OTP -----------------------------------------
+# --------------------------- VERIFY EMAIL OTP --------------------------------------------------
 class VerifyOTPView(APIView):
     permission_classes = [AllowAny]
 
@@ -76,7 +76,7 @@ class VerifyOTPView(APIView):
         return Response({"message": "Account verified successfully..."},status=status.HTTP_200_OK)
 
 
-# ------------------ LOGIN (JWT) ------------------------------------
+# ------------------------ LOGIN (JWT) -----------------------------------------------------------------------
 class LoginView(APIView):
 
     permission_classes = [AllowAny]
