@@ -26,7 +26,7 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
-# ==================== EmailOTP Admin ======================================
+# ========================= EmailOTP Admin =================================================================
 @admin.register(EmailOTP)
 class EmailOTPAdmin(admin.ModelAdmin):
     list_display = ('user', 'code', 'attempts', 'created_at', 'is_expired')
