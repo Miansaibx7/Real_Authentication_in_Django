@@ -40,7 +40,7 @@ class EmailOTPAdmin(admin.ModelAdmin):
     is_expired.boolean = True
     is_expired.short_description = 'Expired'
 
-# ==================== PasswordResetOTP Admin ===========================
+# ================================ PasswordResetOTP Admin ====================================================
 @admin.register(PasswordResetOTP)
 class PasswordResetOTPAdmin(admin.ModelAdmin):
     list_display = ('user', 'code', 'attempts', 'created_at', 'is_expired')
