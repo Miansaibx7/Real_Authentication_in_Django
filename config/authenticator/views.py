@@ -56,12 +56,12 @@ class VerifyOTPView(APIView):
         if otp.attempts >= 5:
             return Response({"error": "Too many attempts"},status=status.HTTP_429_TOO_MANY_REQUESTS)
 
-        #  Expiry check
+        #  Expiry Check
         if otp.is_expired():
             otp.delete()
             return Response({"error": "OTP expired"},status=status.HTTP_400_BAD_REQUEST)
 
-        #  safer comparison
+        #  Safer Comparison
         if str(otp.code).strip() != str(code).strip():
             EmailOTP.objects.filter(id=otp.id).update(attempts=F('attempts') + 1)
             otp.refresh_from_db()
