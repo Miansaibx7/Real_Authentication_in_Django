@@ -46,8 +46,8 @@ class PasswordResetOTPAdmin(admin.ModelAdmin):
     list_display = ('user', 'code', 'attempts', 'created_at', 'is_expired')
     list_filter = ('created_at',)
     search_fields = ('user__email', 'code')
-    readonly_fields = ('created_at',)
-    ordering = ('-created_at',)
+    readonly_fields = ('created_at')
+    ordering = ('-created_at')
 
     def is_expired(self, obj):
         return obj.is_expired()
