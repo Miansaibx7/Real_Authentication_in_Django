@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import User, EmailOTP, PasswordResetOTP
 
-# ==================== User Admin ====================
+# =============================== User Admin ==============================================================
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     # Fields to display in the list view
