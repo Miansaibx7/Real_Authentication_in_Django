@@ -32,13 +32,8 @@ class TrendingProductsView(APIView):
 
                 demand_score = DemandEngine.calculate(t["trend_score"],price,rating)
 
-                results.append({
-                    "trend": t["query"],
-                    "product": p["title"],
-                    "price": price,
-                    "rating": rating,
-                    "source": p.get("source"),
-                    "demand_score": demand_score
+                results.append({"trend": t["query"],"product": p["title"],"price": price,
+                    "rating": rating,"source": p.get("source"),"demand_score": demand_score
                 })
 
         return Response({"location": location,"total_products": len(results),"products": results})
