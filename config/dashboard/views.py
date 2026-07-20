@@ -25,7 +25,7 @@ class TrendingProductsView(APIView):
             products = ApifyService.get_products(t["query"], location)
 
             for p in products:
-                # optional enrichment
+                # Optional Enrichment
                 enriched = RapidAPIService.enrich_product(p["title"])
                 price = float(p.get("price")or enriched.get("price")or 50)
                 rating = float(p.get("rating") or 3)
