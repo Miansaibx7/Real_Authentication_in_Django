@@ -3,17 +3,16 @@ from .views import (RegisterView, VerifyOTPView,LoginView,ForgotPasswordView,Res
 from rest_framework_simplejwt.views import (TokenRefreshView)
 
 urlpatterns = [
-    # url for register
+    # endpoint for register
     path("register/", RegisterView.as_view(), name="register"),
-    # url for VerifyOTP
+    # endpoint for VerifyOTP
     path("verify-otp/", VerifyOTPView.as_view(), name="verify-otp"),
-    # url for Login
+    # endpoint for Login
     path("login/", LoginView.as_view(), name="login"),
-    # url for ForgotPassword
+    # endpoint for ForgotPassword
     path("forgot-password/", ForgotPasswordView.as_view(), name="forgot-password"),
-    # url for ResetPassword
+    # endpoint for ResetPassword
     path("reset-password/", ResetPasswordView.as_view(), name="reset-password"),
-
-# refresh token endpoint for JWT authentication
+    # refresh token endpoint for JWT authentication
     path('token/refresh/', TokenRefreshView.as_view()),
 ]
