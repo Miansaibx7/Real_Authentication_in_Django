@@ -11,7 +11,7 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="login"),
     # url for ForgotPassword
     path("forgot-password/", ForgotPasswordView.as_view(), name="forgot-password"),
-    
+    # url for ResetPassword
     path("reset-password/", ResetPasswordView.as_view(), name="reset-password"),
 
 # refresh token endpoint for JWT authentication
