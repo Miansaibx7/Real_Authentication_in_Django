@@ -42,7 +42,7 @@ class VerifyOTPView(APIView):
         email = request.data.get("email")
         code = request.data.get("code")
 
-        #  input validation
+        #  Input Validation
         if not email or not code:
             return Response({"error": "Email and OTP required"},status=status.HTTP_400_BAD_REQUEST)
 
@@ -52,7 +52,7 @@ class VerifyOTPView(APIView):
         except (User.DoesNotExist, EmailOTP.DoesNotExist):
             return Response({"error": "Invalid email or OTP"},status=status.HTTP_400_BAD_REQUEST)
 
-        #  attempt limit
+        #  Attempt limit
         if otp.attempts >= 5:
             return Response({"error": "Too many attempts"},status=status.HTTP_429_TOO_MANY_REQUESTS)
 
