@@ -52,11 +52,11 @@ class VerifyOTPView(APIView):
         except (User.DoesNotExist, EmailOTP.DoesNotExist):
             return Response({"error": "Invalid email or OTP"},status=status.HTTP_400_BAD_REQUEST)
 
-        #  Attempt limit
+        #  Attempt Limit
         if otp.attempts >= 5:
             return Response({"error": "Too many attempts"},status=status.HTTP_429_TOO_MANY_REQUESTS)
 
-        #  expiry check
+        #  Expiry check
         if otp.is_expired():
             otp.delete()
             return Response({"error": "OTP expired"},status=status.HTTP_400_BAD_REQUEST)
