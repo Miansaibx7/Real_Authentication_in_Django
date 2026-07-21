@@ -12,7 +12,7 @@ from .views import (
 )
 
 urlpatterns = [
-    # Real-time trending + products
+    # Real-time trending + products endpoint 
     path('trending/', TrendingProductsView.as_view(), name='trending-products'),
 
     # IP-based location detection
