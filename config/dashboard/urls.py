@@ -27,7 +27,7 @@ urlpatterns = [
     #  products list endpoint 
     path('products/', ProductListCreateView.as_view(), name='product-list'),
 
-    #  locations
+    #  locations endpoint 
     path('locations/', LocationListCreateView.as_view(), name='location-list'),
 
     # sales (future DB)
