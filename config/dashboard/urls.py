@@ -15,7 +15,7 @@ urlpatterns = [
     # Real-time trending + products endpoint 
     path('trending/', TrendingProductsView.as_view(), name='trending-products'),
 
-    # IP-based location detection
+    # IP-based location detection endpoint 
     path('user-location/', UserLocationView.as_view(), name='user-location'),
 
     # Main dashboard (aggregated AI system)
