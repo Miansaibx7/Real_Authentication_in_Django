@@ -9,7 +9,7 @@ from .services.demand_engine import DemandEngine
 from .services.apify_service import ApifyService
 from .services.rapidapi_service import RapidAPIService
 
-
+# not completed still in developement process
 
 # TREND + PRODUCT INTELLIGENCE
 class TrendingProductsView(APIView):
