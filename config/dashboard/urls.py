@@ -21,7 +21,7 @@ urlpatterns = [
     # Main dashboard (aggregated AI system) endpoint 
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
 
-    # search trends
+    # search trends endpoint 
     path('search/', ProductSearchView.as_view(), name='product-search'),
 
     #  products list
