@@ -11,7 +11,7 @@ from .services.rapidapi_service import RapidAPIService
 
 
 
-# TREND + PRODUCT INTELLIGENCE
+# TREND And PRODUCT INTELLIGENCE
 class TrendingProductsView(APIView):
     permission_classes = [AllowAny]
 
