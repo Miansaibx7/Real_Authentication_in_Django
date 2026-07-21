@@ -18,7 +18,7 @@ urlpatterns = [
     # IP-based location detection endpoint 
     path('user-location/', UserLocationView.as_view(), name='user-location'),
 
-    # Main dashboard (aggregated AI system)
+    # Main dashboard (aggregated AI system) endpoint 
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
 
     # search trends
