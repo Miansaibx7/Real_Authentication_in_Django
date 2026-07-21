@@ -24,7 +24,7 @@ urlpatterns = [
     # search trends endpoint 
     path('search/', ProductSearchView.as_view(), name='product-search'),
 
-    #  products list
+    #  products list endpoint 
     path('products/', ProductListCreateView.as_view(), name='product-list'),
 
     #  locations
