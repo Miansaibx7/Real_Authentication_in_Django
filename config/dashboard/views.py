@@ -132,12 +132,7 @@ class SaleListCreateView(APIView):
     def get(self, request:dict)-> dict:
 
         return Response([
-            {
-                "id": 1,
-                "product_name": "Sample Product",
-                "location": "Karachi",
-                "quantity": 100,
-                "revenue": 5000,
-                "sale_date": "2026-06-16"
+            {"id": 1, "product_name": "Sample Product", "location": "Karachi",
+                "quantity": 100, "revenue": 5000, "sale_date": "2026-06-16"
             }
         ])
