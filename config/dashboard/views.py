@@ -21,7 +21,7 @@ class TrendingProductsView(APIView):
 
         results = []
         for t in trends:
-            # REAL products from Apify (NO MOCK)
+            # REAL products from Apify (NO MOCK DATA)
             products = ApifyService.get_products(t["query"], location)
 
             for p in products:
