@@ -30,6 +30,6 @@ urlpatterns = [
     #  locations endpoint 
     path('locations/', LocationListCreateView.as_view(), name='location-list'),
 
-    # sales (future DB) endpoint 
+    # sales (future DATABASE) endpoint 
     path('sales/', SaleListCreateView.as_view(), name='sale-list'),
 ]
