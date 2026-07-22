@@ -68,6 +68,7 @@ class DashboardView(APIView):
         return Response({"location": location, "total_products": len(data), "data": data })
 
 
+
 # SEARCH TREND PRODUCTS
 class ProductSearchView(APIView):
     permission_classes = [AllowAny]
@@ -84,7 +85,7 @@ class ProductSearchView(APIView):
 
 
 
-# PRODUCT LIST (REAL DATA)
+# PRODUCT LIST WITH (REAL DATA)
 class ProductListCreateView(APIView):
     permission_classes = [AllowAny]
 
