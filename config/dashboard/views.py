@@ -125,7 +125,7 @@ class LocationListCreateView(APIView):
 
 
 
-# SALES (PLACEHOLDER SHOULD BE DATABASE)
+# SALES (PLACEHOLDER SHOULD BE IN DATABASE)
 class SaleListCreateView(APIView):
     permission_classes = [AllowAny]
 
