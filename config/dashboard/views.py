@@ -112,7 +112,7 @@ class ProductListCreateView(APIView):
 
 
 
-#  STATIC LOCATIONS (CAN BE DATABASE LATER)
+#  STATIC LOCATIONS (CAN BE SAVA IN DATABASE LATER)
 class LocationListCreateView(APIView):
     permission_classes = [AllowAny]
 
