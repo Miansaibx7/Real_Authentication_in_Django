@@ -76,7 +76,7 @@ class VerifyOTPView(APIView):
         return Response({"message": "Account verified successfully..."},status=status.HTTP_200_OK)
 
 
-# ------------------------ LOGIN (JWT) -----------------------------------------------------------------------
+# ------------------------ LOGIN (JWT) --------------------------------------------------------------------------------
 class LoginView(APIView):
 
     permission_classes = [AllowAny]
