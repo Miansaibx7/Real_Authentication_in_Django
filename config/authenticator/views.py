@@ -34,7 +34,7 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# --------------------------- VERIFY EMAIL OTP --------------------------------------------------
+# --------------------------- VERIFY EMAIL OTP ------------------------------------------------------------------------
 class VerifyOTPView(APIView):
     permission_classes = [AllowAny]
 
