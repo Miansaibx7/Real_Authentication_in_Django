@@ -151,7 +151,7 @@ class ResetPasswordView(APIView):
         return Response({"message": "Password reset successful"},status=status.HTTP_200_OK)
     
 
-# ------------------------ LOGOUT (Blacklist JWT) ----------------------------------------------------------
+# ----------------------------- LOGOUT (Blacklist JWT) ----------------------------------------------------------
 class LogoutView(APIView):
 
     def post(self, request)-> Response:
