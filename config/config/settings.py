@@ -144,7 +144,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 
-# ---------- Bonus: Integrate External API for Trending Products ----------
+# ---------- Integrate External API for Trending Products ----------
 RAPIDAPI_KEY = config('RAPIDAPI_KEY', default=None)
 GETDEALS_API_KEY = config('GETDEALS_API_KEY', default=None)
 
