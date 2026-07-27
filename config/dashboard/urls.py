@@ -1,7 +1,7 @@
 
 from django.urls import path
-from .views import (
-    TrendingProductsView,UserLocationView,DashboardView,
+
+from .views import (TrendingProductsView,UserLocationView,DashboardView,
     ProductSearchView,ProductListCreateView,LocationListCreateView,
     SaleListCreateView
 )
