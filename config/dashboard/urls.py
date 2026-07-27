@@ -7,6 +7,7 @@ from .views import (TrendingProductsView,UserLocationView,DashboardView,
 )
 
 urlpatterns = [
+    
     # Real-time trending + products endpoint 
     path('trending/', TrendingProductsView.as_view(), name='trending-products'),
 

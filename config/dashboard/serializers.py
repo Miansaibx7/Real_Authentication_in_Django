@@ -6,6 +6,7 @@ class TrendSerializer(serializers.Serializer):
     trend_score = serializers.IntegerField()
 
 
+
 class ProductDemandSerializer(serializers.Serializer):
     name = serializers.CharField()
     demand_score = serializers.FloatField()
