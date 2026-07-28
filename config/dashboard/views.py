@@ -35,7 +35,6 @@ class TrendingProductsView(APIView):
                 results.append({"trend": t["query"],"product": p["title"],"price": price,
                     "rating": rating,"source": p.get("source"),"demand_score": demand_score
                 })
-
         return Response({"location": location,"total_products": len(results),"products": results})
 
 
