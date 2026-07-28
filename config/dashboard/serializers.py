@@ -1,11 +1,9 @@
 from rest_framework import serializers
 
 
-
 class TrendSerializer(serializers.Serializer):
     name = serializers.CharField()
     trend_score = serializers.IntegerField()
-
 
 
 class ProductDemandSerializer(serializers.Serializer):
