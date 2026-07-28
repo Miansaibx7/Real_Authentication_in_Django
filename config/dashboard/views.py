@@ -61,6 +61,7 @@ class DashboardView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request:dict)-> dict:
+        
         location = request.GET.get("location", "PK")
         data = AggregatorService.get_dashboard_data(location)
 
