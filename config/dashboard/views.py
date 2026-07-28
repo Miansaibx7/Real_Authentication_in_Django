@@ -47,7 +47,7 @@ class UserLocationView(APIView):
         try:
             response = requests.get("http://ip-api.com/json/",timeout=5)
             data = response.json()
-            
+
             return Response({"city": data.get("city"), "country": data.get("country"), "latitude": data.get("lat"),
                 "longitude": data.get("lon")})
 
@@ -56,7 +56,7 @@ class UserLocationView(APIView):
         
         
 
-# MAIN DASHBOARD (AGGREGATED)
+# MAIN DASHBOARD AGGREGATED
 class DashboardView(APIView):
     permission_classes = [AllowAny]
 
