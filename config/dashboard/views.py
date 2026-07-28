@@ -46,8 +46,8 @@ class UserLocationView(APIView):
     def get(self, request:dict)-> dict:
         try:
             response = requests.get("http://ip-api.com/json/",timeout=5)
-
             data = response.json()
+            
             return Response({"city": data.get("city"), "country": data.get("country"), "latitude": data.get("lat"),
                 "longitude": data.get("lon")})
 
