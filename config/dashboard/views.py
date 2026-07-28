@@ -61,7 +61,7 @@ class DashboardView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request:dict)-> dict:
-        
+
         location = request.GET.get("location", "PK")
         data = AggregatorService.get_dashboard_data(location)
 
@@ -75,6 +75,7 @@ class ProductSearchView(APIView):
 
     def get(self, request:dict)-> dict:
         query = request.GET.get("query")
+        
         if not query:
             return Response({"error": "query required"}, status=400)
         
