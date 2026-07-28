@@ -7,7 +7,6 @@ class Product(models.Model):
     search_volume = models.IntegerField(default=0)
     category = models.CharField(max_length=255, blank=True)
     location = models.CharField(max_length=255, default="Global")
-
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
