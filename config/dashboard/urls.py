@@ -8,7 +8,7 @@ from .views import (TrendingProductsView,UserLocationView,DashboardView,
 
 urlpatterns = [
     
-    # Real-time trending + products endpoint 
+    # Real-time trending and products endpoint 
     path('trending/', TrendingProductsView.as_view(), name='trending-products'),
 
     # IP-based location detection endpoint 
