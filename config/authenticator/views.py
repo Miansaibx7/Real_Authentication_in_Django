@@ -30,7 +30,6 @@ class RegisterView(APIView):
             send_email_otp(user.email, code)
 
             return Response({"message": "OTP sent to email"},status=status.HTTP_201_CREATED)
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -65,7 +64,6 @@ class VerifyOTPView(APIView):
         if str(otp.code).strip() != str(code).strip():
             EmailOTP.objects.filter(id=otp.id).update(attempts=F('attempts') + 1)
             otp.refresh_from_db()
-
             return Response({"error": "Invalid OTP"},status=status.HTTP_400_BAD_REQUEST)
 
         user.is_active = True
