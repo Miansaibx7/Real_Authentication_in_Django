@@ -4,12 +4,12 @@ from django.conf import settings
 
 
 def generate_otp():
-# function to generate a 6-digits OTP
+    """ Function to generate a 6-digits OTP """
     return str(secrets.randbelow(900000) + 100000)
 
 
 def send_email_otp(email, code):
-# function to send OTP email
+    """ Function to send OTP email """
     try:
         send_mail(subject="Your Verification Code", message=f"Your OTP code is: {code}",
             from_email=settings.EMAIL_HOST_USER, recipient_list=[email],
