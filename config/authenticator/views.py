@@ -96,8 +96,8 @@ class LoginView(APIView):
                 return Response({"error": "Email not verified"},status=status.HTTP_403_FORBIDDEN)
 
             refresh = RefreshToken.for_user(user)
-            return Response({"refresh": str(refresh),"access": str(refresh.access_token),})
 
+            return Response({"refresh": str(refresh),"access": str(refresh.access_token),})
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
