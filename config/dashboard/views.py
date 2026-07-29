@@ -18,8 +18,8 @@ class TrendingProductsView(APIView):
     def get(self, request:dict)-> dict:
         location = request.GET.get("location", "PK")
         trends = TrendService.get_trends(location)
-
         results = []
+        
         for t in trends:
             # REAL products from Apify (NO MOCK DATA)
             products = ApifyService.get_products(t["query"], location)
