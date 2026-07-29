@@ -16,5 +16,4 @@ def send_email_otp(email, code):
             fail_silently=False,
         )
     except Exception as e:
-        print(f"SMTP Setup Error: {e}") 
-# This prevents the registration endpoint from crashing 500 if email fails
+        print(f"SMTP Setup Error: {e}") # This prevents the registration endpoint from crashing 500 if email fails
