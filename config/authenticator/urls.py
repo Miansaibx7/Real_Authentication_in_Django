@@ -9,7 +9,7 @@ urlpatterns = [
     path("verify-otp/", VerifyOTPView.as_view(), name="verify-otp"),
     # endpoint for Login
     path("login/", LoginView.as_view(), name="login"),
-    # endpoint for ForgotPassword
+    # Endpoint  for ForgotPassword
     path("forgot-password/", ForgotPasswordView.as_view(), name="forgot-password"),
     # endpoint for ResetPassword
     path("reset-password/", ResetPasswordView.as_view(), name="reset-password"),
