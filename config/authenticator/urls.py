@@ -3,7 +3,7 @@ from .views import (RegisterView, VerifyOTPView,LoginView,ForgotPasswordView,Res
 from rest_framework_simplejwt.views import (TokenRefreshView)
 
 urlpatterns = [
-    # endpoint for register
+    # Endpoint for register
     path("register/", RegisterView.as_view(), name="register"),
     # endpoint for VerifyOTP
     path("verify-otp/", VerifyOTPView.as_view(), name="verify-otp"),
