@@ -136,6 +136,5 @@ GETDEALS_API_KEY = config('GETDEALS_API_KEY', default=None)
 
 # For SerpApi (Google Trends)
 SERPAPI_API_KEY = config("SERPAPI_API_KEY")
-
 # For Apify (Ecommerce data)
 APIFY_API_KEY = config("APIFY_API_KEY")
