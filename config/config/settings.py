@@ -124,6 +124,7 @@ EMAIL_HOST = "smtp.gmail.com" # SMTP server address (Gmail).
 EMAIL_PORT = 587  # Port for TLS (587)
 EMAIL_USE_TLS = True # Enable TLS encryption.
 
+
 # first install python-decouple then create env file. Write the email and password then in setting file just import it 
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
