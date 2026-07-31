@@ -118,7 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
-# Email settings for STMP(SIMPLE TRA)
+# Email settings for STMP (SIMPLE TRA)
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" # Which mail backend to use (SMTP).
 EMAIL_HOST = "smtp.gmail.com" # SMTP server address (Gmail).
 EMAIL_PORT = 587  # Port for TLS (587)
