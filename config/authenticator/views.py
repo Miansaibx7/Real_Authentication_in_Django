@@ -75,8 +75,8 @@ class VerifyOTPView(APIView):
 
 # ----------------------------- LOGIN (JWT) --------------------------------------------------------------------------------
 class LoginView(APIView):
-
     permission_classes = [AllowAny]
+
     def post(self, request)-> Response:
 
         serializer = LoginSerializer(data=request.data)
