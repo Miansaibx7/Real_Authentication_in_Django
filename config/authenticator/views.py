@@ -121,8 +121,8 @@ class ForgotPasswordView(APIView):
 
 # ----------------------------- RESET PASSWORD --------------------------------------------------------------
 class ResetPasswordView(APIView):
-
     permission_classes = [AllowAny]
+
     def post(self, request)-> Response:
 
         email = request.data.get("email")
