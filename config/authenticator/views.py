@@ -101,6 +101,7 @@ class LoginView(APIView):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
+
 # ----------------------------- FORGOT PASSWORD (Send OTP) ----------------------------------------------------
 class ForgotPasswordView(APIView):
     permission_classes = [AllowAny]
