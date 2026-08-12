@@ -81,10 +81,7 @@ else
 
 fi
 
-# ------------------------------------------------------------
-# 7. Final Django system check
-# ------------------------------------------------------------
-
+# Final Django system check
 echo ""
 echo ">>> Performing final Django check..."
 
