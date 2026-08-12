@@ -46,10 +46,7 @@ help:
 	@echo "  make clean               Remove cache files"
 	@echo ""
 
-# --------------------------------------------------
 # Installation
-# --------------------------------------------------
-
 install: SaaS-install frontend-install
 
 backend-install:
@@ -58,10 +55,7 @@ backend-install:
 frontend-install:
 	cd $(FRONTEND_DIR) && npm install
 
-# --------------------------------------------------
 # Development servers
-# --------------------------------------------------
-
 backend:
 	cd $(BACKEND_DIR) && uv run python manage.py runserver
 
