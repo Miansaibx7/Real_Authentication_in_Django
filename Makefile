@@ -100,17 +100,11 @@ lint-backend:
 lint-frontend:
 	cd $(FRONTEND_DIR) && npm run lint
 
-# --------------------------------------------------
 # Formatting
-# --------------------------------------------------
-
 format:
 	cd $(BACKEND_DIR) && uv run ruff format .
 
-# --------------------------------------------------
 # Complete checks
-# --------------------------------------------------
-
 check: lint-backend lint-frontend test-backend
 
 # --------------------------------------------------
