@@ -71,10 +71,7 @@ dev:
 	@echo "Terminal 2:"
 	@echo "  make frontend"
 
-# --------------------------------------------------
 # Django
-# --------------------------------------------------
-
 makemigrations:
 	cd $(BACKEND_DIR) && uv run python manage.py makemigrations
 
@@ -87,10 +84,7 @@ createsuperuser:
 shell:
 	cd $(BACKEND_DIR) && uv run python manage.py shell
 
-# --------------------------------------------------
 # Testing
-# --------------------------------------------------
-
 test: test-SaaS test-frontend
 
 test-backend:
