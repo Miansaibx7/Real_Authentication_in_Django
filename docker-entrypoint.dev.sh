@@ -33,13 +33,9 @@ echo ""
 echo ">>> Checking Python..."
 python --version
 
-
-# 2. Check Django
-# ------------------------------------------------------------
-
+#  Check Django
 echo ""
 echo ">>> Checking Django..."
-
 python -m django --version
 
 # ------------------------------------------------------------
