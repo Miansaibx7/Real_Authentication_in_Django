@@ -5,17 +5,11 @@
         lint-backend lint-frontend format \
         check clean
 
-# --------------------------------------------------
 # Project directories
-# --------------------------------------------------
-
 BACKEND_DIR := SaaS
 FRONTEND_DIR := frontend
 
-# --------------------------------------------------
 # Default command
-# --------------------------------------------------
-
 help:
 	@echo ""
 	@echo "Real time authenticator Project"
