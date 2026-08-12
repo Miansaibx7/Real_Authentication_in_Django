@@ -6,24 +6,13 @@
 #   Apply database migrations.
 #   Collect static files when required.
 #   Start Django's development server.
-#
-# Project structure:
-#
-#   /app/
-#   ├── config/
-#   │   ├── manage.py
-#   │   ├── config/
-#   │   ├── authenticator/
-#   │   └── dashboard/
-#   └── ...
-#
+
 # Django settings:
 #   config.settings
 #
 # Development server:
 #   0.0.0.0:8000
-#
-# ============================================================
+
 
 set -e
 
