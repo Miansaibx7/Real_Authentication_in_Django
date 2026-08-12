@@ -69,26 +69,11 @@ echo ""
 echo ">>> Applying database migrations..."
 python "$MANAGE_PY" migrate --noinput
 
-# ------------------------------------------------------------
-# 6. Collect static files
-# ------------------------------------------------------------
-#
-# This is useful when STATIC_ROOT is configured.
-#
-# If your development configuration does not require static
-# collection, you can disable it with:
-#
-#     COLLECT_STATIC=false
-#
-# ------------------------------------------------------------
-
+# Collect static files
 if [ "${COLLECT_STATIC:-true}" = "true" ]; then
-
     echo ""
     echo ">>> Collecting static files..."
-
     python "$MANAGE_PY" collectstatic --noinput
-
 else
 
     echo ""
