@@ -51,16 +51,12 @@ fi
 echo "Django project found:"
 echo "  $MANAGE_PY"
 
-# 4. Run Django system checks
+# Run Django system checks
 echo ""
 echo ">>> Running Django system checks..."
-
 python "$MANAGE_PY" check
 
-# ------------------------------------------------------------
-# 5. Apply database migrations
-# ------------------------------------------------------------
-#
+# Apply database migrations
 # This applies migrations that have not yet been applied.
 #
 # It is safe for normal development because:
