@@ -1,13 +1,11 @@
 #!/bin/sh
 
-
-#
 # Responsibilities:
-#   1. Stop immediately if a command fails.
-#   2. Check the Django project configuration.
-#   3. Apply database migrations.
-#   4. Collect static files when required.
-#   5. Start Django's development server.
+#   Stop immediately if a command fails.
+#   Check the Django project configuration.
+#   Apply database migrations.
+#   Collect static files when required.
+#   Start Django's development server.
 #
 # Project structure:
 #
