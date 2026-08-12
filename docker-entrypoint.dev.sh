@@ -52,8 +52,6 @@ echo "Django project found:"
 echo "  $MANAGE_PY"
 
 # 4. Run Django system checks
-# ------------------------------------------------------------
-
 echo ""
 echo ">>> Running Django system checks..."
 
