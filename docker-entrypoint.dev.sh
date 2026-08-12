@@ -38,10 +38,7 @@ echo ""
 echo ">>> Checking Django..."
 python -m django --version
 
-# ------------------------------------------------------------
-# 3. Verify the Django project exists
-# ------------------------------------------------------------
-
+# Verify the Django project exists
 echo ""
 echo ">>> Checking Django project..."
 
@@ -54,7 +51,6 @@ fi
 echo "Django project found:"
 echo "  $MANAGE_PY"
 
-# ------------------------------------------------------------
 # 4. Run Django system checks
 # ------------------------------------------------------------
 
