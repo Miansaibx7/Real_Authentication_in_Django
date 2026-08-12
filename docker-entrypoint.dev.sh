@@ -84,13 +84,10 @@ fi
 # Final Django system check
 echo ""
 echo ">>> Performing final Django check..."
-
 python "$MANAGE_PY" check
 
-# ------------------------------------------------------------
-# 8. Start Django development server
-# ------------------------------------------------------------
 
+# Start Django development server
 echo ""
 echo "============================================================"
 echo "  Django development server is starting"
