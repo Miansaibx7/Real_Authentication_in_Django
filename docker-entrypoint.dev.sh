@@ -13,13 +13,9 @@
 # Development server:
 #   0.0.0.0:8000
 
-
 set -e
 
-# ------------------------------------------------------------
 # Configuration
-# ------------------------------------------------------------
-
 PROJECT_DIR="/app/config"
 MANAGE_PY="${PROJECT_DIR}/manage.py"
 HOST="${DJANGO_HOST:-0.0.0.0}"
