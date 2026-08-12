@@ -93,10 +93,7 @@ test-backend:
 test-frontend:
 	cd $(FRONTEND_DIR) && npm test
 
-# --------------------------------------------------
 # Linting
-# --------------------------------------------------
-
 lint-backend:
 	cd $(BACKEND_DIR) && uv run ruff check .
 
