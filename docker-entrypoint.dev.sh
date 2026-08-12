@@ -56,18 +56,11 @@ echo ""
 echo ">>> Running Django system checks..."
 python "$MANAGE_PY" check
 
-# Apply database migrations
-# This applies migrations that have not yet been applied.
-#
-# It is safe for normal development because:
-#
-#     migrate
-#
-# does NOT delete existing data.
-#
+# Apply database migrations. This applies migrations that have not yet been applied.
+# It is safe for normal development because: migrate does NOT delete existing data.
+
 # IMPORTANT:
 # Do NOT use:
-#
 #     migrate --fake
 #     migrate --run-syncdb
 #     migrate --fake-initial
