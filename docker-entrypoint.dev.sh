@@ -64,14 +64,9 @@ python "$MANAGE_PY" check
 #     migrate --fake
 #     migrate --run-syncdb
 #     migrate --fake-initial
-#
-# automatically here unless your project specifically requires
-# them.
-# ------------------------------------------------------------
 
 echo ""
 echo ">>> Applying database migrations..."
-
 python "$MANAGE_PY" migrate --noinput
 
 # ------------------------------------------------------------
