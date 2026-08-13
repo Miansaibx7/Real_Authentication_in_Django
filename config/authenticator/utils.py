@@ -8,6 +8,7 @@ def generate_otp():
     return str(secrets.randbelow(900000) + 100000)
 
 
+
 def send_email_otp(email, code):
     """ Function to send OTP email """
     try:
