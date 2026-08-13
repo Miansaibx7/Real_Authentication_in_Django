@@ -15,8 +15,6 @@ from rest_framework import status
 
 User = get_user_model()
 
-
-
 # --------------------------------- REGISTER ---------------------------------------------------------------------
 class RegisterView(APIView):
     permission_classes = [AllowAny]
