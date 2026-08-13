@@ -13,6 +13,6 @@ urlpatterns = [
     path("forgot-password/", ForgotPasswordView.as_view(), name="forgot-password"),
     # Endpoint for ResetPassword
     path("reset-password/", ResetPasswordView.as_view(), name="reset-password"),
-    # Refresh token endpoint for JWT authentication
+    # Refresh token Endpoint for JWT authentication
     path('token/refresh/', TokenRefreshView.as_view()),
 ]
