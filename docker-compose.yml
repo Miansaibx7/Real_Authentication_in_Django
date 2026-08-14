@@ -45,6 +45,6 @@ services:
     command: ["python", "config/manage.py", "runserver", "0.0.0.0:8000"]
 
 
-# volumes:
-#   redis_data:
+volumes:
+  redis_data:
 
