@@ -14,7 +14,6 @@
 
 #     restart: unless-stopped
 
-
 services:
   web:
     image: miansaibx8/real_authentication_in_django:latest
@@ -28,7 +27,6 @@ services:
       # Only mount the database file – the code stays inside the image
       - ./config/db.sqlite3:/app/config/db.sqlite3 # persist SQLite database
       
-
     env_file:
       - .env   # loads all sensitive variables at runtime
     
