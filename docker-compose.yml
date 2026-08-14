@@ -36,7 +36,7 @@ services:
     environment:
       - DEBUG=${DEBUG:-True}    # set DEBUG mode based on .env file
       - DJANGO_SETTINGS_MODULE=config.settings  # set Django settings module based on .env file
-      # - REDIS_URL=redis://redis:6379/1 
+      - REDIS_URL=redis://redis:6379/1 
       - UV_VIRTUAL_ENV=/app/.venv
 
     # depends_on:
