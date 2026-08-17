@@ -3,17 +3,12 @@ services:
   redis:
 
     image: redis:7-alpine
-
     container_name: saas_redis
-
     ports:
       - "6379:6379"          # optional, for debugging from host
-
     volumes:
       - redis_data:/data     # persist Redis data (optional)
-
     restart: unless-stopped
-
 
 
 services:
@@ -21,18 +16,14 @@ services:
     image: miansaibx8/real_authentication_in_django:latest
 
     container_name: saas_web
-
     ports:
       - "8000:8000"
-
     volumes:
       # Only mount the database file – the code stays inside the image
       - ./config/db.sqlite3:/app/config/db.sqlite3 # persist SQLite database
-      
     env_file:
       - .env   # loads all sensitive variables at runtime
     
-
     environment:
       - DEBUG=${DEBUG:-True}    # set DEBUG mode based on .env file
       - DJANGO_SETTINGS_MODULE=config.settings  # set Django settings module based on .env file
@@ -41,9 +32,7 @@ services:
 
     # depends_on:
     #   - redis
-
     command: ["python", "config/manage.py", "runserver", "0.0.0.0:8000"]
-
 
 volumes:
   redis_data:
