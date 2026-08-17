@@ -3,11 +3,9 @@ from django.urls import path
 
 from .views import (TrendingProductsView,UserLocationView,DashboardView,
     ProductSearchView,ProductListCreateView,LocationListCreateView,
-    SaleListCreateView
-)
+    SaleListCreateView)
 
 urlpatterns = [
-    
     # Real-time trending and products endpoint 
     path('trending/', TrendingProductsView.as_view(), name='trending-products'),
 

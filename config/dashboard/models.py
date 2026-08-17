@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Product(models.Model):
     keyword = models.CharField(max_length=255)
     trend_score = models.FloatField(default=0.0)
